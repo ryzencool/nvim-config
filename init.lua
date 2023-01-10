@@ -1,21 +1,26 @@
-local impatient_ok, impatient = pcall(require, "impatient")
-if impatient_ok then impatient.enable_profile() end
-
-for _, source in ipairs {
-  "core.utils",
-  "core.options",
-  "core.bootstrap",
-  "core.diagnostics",
-  "core.autocmds",
-  "core.mappings",
-  "configs.which-key-register",
-} do
-  local status_ok, fault = pcall(require, source)
-  if not status_ok then vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault) end
-end
-
-astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
-
-if vim.fn.has "nvim-0.8" ~= 1 or vim.version().prerelease then
-  vim.schedule(function() astronvim.notify("Unsupported Neovim Version! Please check the requirements", "error") end)
-end
+require("user.plugins")
+require("user.options")
+require("user.keymaps")
+require("user.colorscheme")
+require("user.cmp")
+require("user.lsp")
+require("user.telescope")
+require("user.nvim-tree")
+require("user.toggleterm")
+require("user.treesitter")
+require("user.autopairs")
+require("user.autotag")
+require("user.lualine")
+require("user.project")
+require("user.indent-line")
+require("user.recent-files")
+require("user.navigator")
+require("user.comment")
+require("user.bufferline")
+require("user.dashboard")
+require("user.dap")
+require("user.gitsigns")
+require("user.leap")
+require("user.clip")
+require("user.scroll")
+require("user.rest")
